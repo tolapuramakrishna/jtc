@@ -30,6 +30,20 @@ module.exports = {
             return false;
         }
     },
+    isJsonString: (str) => {
+        try {
+
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+
+        } catch (err) {
+            return false;
+        }
+    },
     isPasswordValid: (pass) => {
         try {
             var re = /^[a-zA-Z0-9@\#\$\&\* ]*$/   
