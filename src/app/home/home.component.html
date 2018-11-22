@@ -1,0 +1,42 @@
+<div class="pt-2">
+  <div class="row clearfix">
+    <div class="col-sm-12">
+      <div class="float-right">
+        <button mat-button class="btn btn-sm" (click)="onRegister()" *ngIf="masterObj.token =='' ">Register</button>
+        <button mat-button class="btn btn-sm" (click)="onLogin()" *ngIf="masterObj.token =='' ">Login</button>
+        <button mat-button class="btn btn-sm" (click)="onLogout()" *ngIf="masterObj.token !='' ">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row clearfix pt-2">
+    <div class="col-sm-12">
+      <div *ngFor="let item of commentArr" class="pt-1">
+        <mat-card >
+          <mat-card-content class="pb-1">
+            <p>
+              {{ item.comment }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+
+            <span mat-button> {{ item.upVoteCount + 0 }} votes</span>
+            <button mat-button (click)="onUpvote(item.commentId)" [disabled]="isUserUpvoted(item.commentId)">Upvote</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-sm-12 pt-3">
+      <div class="row">
+        <div class="col-sm-10">
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Post a comment" [(ngModel)]="txt_comment"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2 pt-3">
+          <button class="btn btn-sm" (click)="onPostComment(txt_comment)" [disabled]="postBtnFlag">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

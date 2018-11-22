@@ -1,0 +1,83 @@
+<div class="row ">
+
+    <div class="card-body card mat-elevation-z8">
+      <form [formGroup]="l_form" (ngSubmit)="onsignin(f)" #f="ngForm">
+        <div class="pt-3 ">
+
+          <h3 class="header-3 pull-right">Sign In</h3>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 ">
+            <div class="form-inline">
+              <mat-form-field>
+                <input matInput placeholder="Email ID" formControlName="username" aria-label="email" required>
+                <span matSuffix>
+                  <i class="fa fa-envelope"></i>
+                </span>
+                <mat-error>
+                  <span *ngIf="l_form.get('username').errors?.required">Email ID Required</span>
+                  <span *ngIf="l_form.get('username').errors?.invalid">Please Enter Valid Email ID.</span>
+                  <span *ngIf="l_form.get('username').errors?.pattern">Please Enter Valid Email ID</span>
+                </mat-error>
+
+
+              </mat-form-field>
+
+            </div>
+
+          </div>
+          <div class="col-sm-12 ">
+            <div class="form-inline">
+              <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password" type="password" maxlength="20" required>
+                <span matSuffix>
+                  <i class="fa fa-lock"></i>
+                </span>
+
+                <mat-error>
+                  <span *ngIf="l_form.get('password').errors?.required">
+                    Password Required.
+                  </span>
+                  <span *ngIf="l_form.get('password').errors?.pattern">
+                    Please enter valid password
+                  </span>
+
+                </mat-error>
+
+
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="col-sm-12  text-center log-padding">
+            <span *ngIf="this.message" class="alert" style="color: red">
+              {{ message }}
+            </span>
+
+          </div>
+          <div class="col-sm-12  text-center">
+            <button  type="button" class="btn btn-md btn-primary" (click)="dialogRef.close()">Close</button>
+            <button id="signupSubmit" type="submit" class="btn btn-md btn-primary ">Login</button>
+          </div>
+
+        </div>
+        <!-- <div class="row pt-3">
+          <div class="col-sm-12">
+            <div class="text-center">
+              <mat-divider></mat-divider>
+              <div class="options">
+                <p>Don't have an account?
+                  <a (click)="onSignup()">
+                    <u>Sign Up</u>
+                  </a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div> -->
+      </form>
+    </div>
+ 
+</div>
