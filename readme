@@ -1,6 +1,10 @@
 
 Used stack - Angular 5, node js, express js and mongodb
 
+1. user need to register with any email and first 
+2. user can login after registarion
+3.  user can post and upvote after login
+
 
 When a user lands on the root of the website, they can:
 

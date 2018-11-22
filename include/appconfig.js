@@ -52,11 +52,11 @@ if (process.env.NODE_ENV == 'development') {
     appConfig = {
         consoleMsg: 'Production configuration loaded.',
         serverConfig: {
-            address: 'https://jtc-app.herokuapp.com',
+            address: 'https://jtc-app.herokuapp.com/',
             port: process.env.PORT || 3600,
             options: {
                 CORS: {
-                    authTokenHeaders: ['RK-auth-token']
+                    authTokenHeaders: ['kt-auth-token']
                 }
             }
         },

@@ -77,7 +77,7 @@ global.app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, RK-auth-token');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, kt-auth-token');
   if ('OPTIONS' === req.method) {
     res.sendStatus(200);
   } else {
@@ -87,23 +87,14 @@ global.app.use(function (req, res, next) {
 /********************************************************************/
 
 // global.app.use(express.static(__dirname + '/dist/'));
-var clientsiteFootPrint = async (req) => {
-  var payload = {
-    agent: await utils.getUserDeviceDetails(req.headers['user-agent']),
-    ipAddressDetails: await utils.getUserIpDetails(req.headers['x-forwarded-for'] ||
-      req.connection.remoteAddress ||
-      req.socket.remoteAddress ||
-      (req.connection.socket ? req.connection.socket.remoteAddress : null)),
-    createdTime: moment().toDate('YYYY-MM-DD HH:mm:ss'),
-  };
-  var docInserted = await utils.insertDocInDb('clientFootPrint', payload);
-};
+
 /***************************REST APIs******************/
 (function () {
+    require('./router')();
   require('./apis/user')();
   require('./apis/login')();
   require('./apis/comments')();
-  require('./router')();
+  require('./express')();
 })();
 /********************************************************************/
 
