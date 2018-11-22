@@ -3,8 +3,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const utilities = require('./include/utilities');
-const appConfig = require('./include/appconfig');
+const utilities = require('./server/include/utilities');
+const appConfig = require('./server/include/appconfig');
 const path = require('path');
 
 var compression = require('compression');
