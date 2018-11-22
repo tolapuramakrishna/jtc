@@ -44,8 +44,8 @@ module.exports = () => {
                                 messageText: 'Registration successful!'
                             });
                         } else {
-                            res.status(503).send({
-                                status: 1,
+                            res.status(500).send({
+                                status: 0,
                                 message: 'error',
                                 messageText: 'Registration failed!, Please try after some time.'
                             });
