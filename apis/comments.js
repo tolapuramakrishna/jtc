@@ -13,7 +13,7 @@ module.exports = () => {
             if (['', undefined, 'undefined', null, 'null'].indexOf(postObj) == -1 && (postObj.comment) && (postObj.uid)) {
 
                 // *********************************************************************
-                let cmntFlag = utils.getNextSequenceValue('comments', 'CM').then(async (cid) => {
+                let cmntFlag = utils.getNextSequenceValue('comments', 'jct').then(async (cid) => {
                     var payload = {
                         commentId: cid,
                         comment: postObj.comment,
@@ -38,7 +38,10 @@ module.exports = () => {
                         });
                     }
 
-                })
+                }).catch((err)=>{
+
+                    }
+                )
 
             } else {
                 res.status(400).send({

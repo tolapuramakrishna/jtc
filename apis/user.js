@@ -7,7 +7,7 @@ const moment = require('moment-timezone');
 module.exports = () => {
     global.app.post('/v1/userregister', (req, res, next) => {
         var postObj = req.body;
-
+        console.log('register');
         if (postObj && postObj.hasOwnProperty('userName') && postObj.hasOwnProperty('email') &&
             postObj.hasOwnProperty('password')) {
             let userName = utils.isNameValid(postObj.userName);
@@ -74,8 +74,7 @@ module.exports = () => {
                     });
                 }
             }
-        } else {
-           
+        } else {          
             res.status(400).send({
                 status: 0,
                 message: 'error',
