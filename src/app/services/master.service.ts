@@ -23,7 +23,8 @@ export class MasterService {
     if ([undefined, '', null].indexOf(temp) == -1) {
       this.token = temp;
       this.userData = JSON.parse(localStorage.getItem('userData'));
-      this.userId = this.userData[0].uid;
+      if(this.userData)
+        this.userId = this.userData[0].uid;
     }
   }
 
