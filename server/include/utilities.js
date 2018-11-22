@@ -16,7 +16,20 @@ module.exports = {
         }
     },
     
-
+    isNameValid: (name) => {
+        try {
+            var re = /^[^\s][a-zA-Z\s ]{2,30}$/;
+            var t = re.test(name);
+            if (t) {
+                var input = name;
+                return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1); }) : '';
+            } else {
+                return false;
+            }
+        } catch (err) {
+            return false;
+        }
+    },
     isPasswordValid: (pass) => {
         try {
             var re = /^[a-zA-Z0-9@\#\$\&\* ]*$/   

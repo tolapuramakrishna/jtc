@@ -19,7 +19,7 @@ if (process.env.NODE_ENV == 'development') {
             }
         },
         databaseConfig: {
-            url: 'mongodb://ramakrishnatolapu:asdf123@ds147723.mlab.com:47723/msr-db',
+            url:'mongodb://ramakrishnatolapu:asdf123@ds123151.mlab.com:23151/jtc',
         },
         sessionConfig: {
             sessionPayload: {
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV == 'development') {
             }
         },
         databaseConfig: {
-            url:'mongodb://ramakrishna:jtc2app@ds123151.mlab.com:23151/jtc',
+            url:'mongodb://ramakrishnatolapu:asdf123@ds123151.mlab.com:23151/jtc',
         },
         sessionConfig: {
             sessionPayload: {
