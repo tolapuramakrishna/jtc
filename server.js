@@ -3,8 +3,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const utilities = require('./db-api/include/utilities');
-const appConfig = require('./db-api/include/appconfig');
+const utilities = require('./include/utilities');
+const appConfig = require('./include/appconfig');
 const path = require('path');
 
 var compression = require('compression');
@@ -86,11 +86,10 @@ global.app.use(function(req, res, next) {
 
 /***************************REST APIs******************/
 (function() {
-    require('./db-api/apis/user')();
-    require('./db-api/apis/login')();
-    require('./db-api/apis/comments')();
-    require('./router')();
-    
+    require('./apis/user')();
+    require('./apis/login')();
+    require('./apis/comments')();
+    require('./router')();  
 })();
 /********************************************************************/
 

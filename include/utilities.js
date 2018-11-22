@@ -15,7 +15,38 @@ module.exports = {
             return false;
         }
     },
-    
+    isNumberValid: (number) => {
+        try {
+            var re = /^\d+$/;
+            return re.test(number);
+        } catch (err) {
+            return false;
+        }
+    },
+    isAlphaNumeric: (string) => {
+        try {
+            var re = /^[0-9a-zA-Z]+$/;
+            return re.test(string);
+        } catch (err) {
+            return false;
+        }
+    },
+    isTextValid: (string) => {
+        try {
+            var re = /^[a-zA-Z]+$/;
+            return re.test(string);
+        } catch (err) {
+            return false;
+        }
+    },
+    isTextAreaValid: (string) => {
+        try {
+            var re = /^[ A-Za-z0-9_@./#&+-]*$/;
+            return re.test(string);
+        } catch (err) {
+            return false;
+        }
+    },
     isNameValid: (name) => {
         try {
             var re = /^[^\s][a-zA-Z\s ]{2,30}$/;
@@ -26,6 +57,22 @@ module.exports = {
             } else {
                 return false;
             }
+        } catch (err) {
+            return false;
+        }
+    },
+    isAddressValid: (address) => {
+        try {
+            var re = /^[a-zA-Z0-9-\/,] ?([a-zA-Z0-9-\/,]|[a-zA-Z0-9-\/,] )*[a-zA-Z0-9-\/,]$/;
+            return re.test(address);
+        } catch (err) {
+            return false;
+        }
+    },
+    isPhoneNumberValid: (phoneNumber) => {
+        try {
+            var re = /^[6789]\d{9}$/;
+            return re.test(phoneNumber);
         } catch (err) {
             return false;
         }
@@ -44,6 +91,33 @@ module.exports = {
             return false;
         }
     },
+
+    capitilization: (input) => {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1); }) : '';
+    },
+
+    isItemExistInArray: (item, array) => {
+        try {
+            array = array || [];
+
+            return _.find(array, (eachItem) => {
+                if (eachItem == item) {
+                    return true;
+                }
+            });
+
+        } catch (err) {
+            return false;
+        }
+    },
+    isPinCodeValid: (pinCode) => {
+        try {
+            var re = /^[1-9][0-9]{5}$/;
+            return re.test(pinCode);
+        } catch (err) {
+            return false;
+        }
+    },
     isPasswordValid: (pass) => {
         try {
             var re = /^[a-zA-Z0-9@\#\$\&\* ]*$/   
@@ -53,7 +127,9 @@ module.exports = {
             return false;
         }
     },
-
+    otpGenerator: () => {
+        return Math.floor(1000 + Math.random() * 9000);
+    },
     updateValueInDb: (collectionName, query, update, options) => {
         options = options ? options : {};
         dbService.findOneAndSetDoc(collectionName, query, update, options).catch(error => { console.log(error) });
@@ -91,5 +167,27 @@ module.exports = {
         // hash is from DB
         return bcrypt.compareSync(passphrase, hash);;
     },
-  
+    getUserIpDetails: async(ipAddress) => {
+        if (ipAddress) {
+            try {
+                var response = await rp('http://ipinfo.io/' + ipAddress);
+                if (response && response.hasOwnProperty('body')) {
+                    var ipObj = await JSON.parse(response.body);
+                    return ipObj;
+                } else {
+                    return null;
+                }
+            } catch (err) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    },
+    getUserDeviceDetails: async(ua) => {
+        var parser = new UAParser();
+        var ua = ua; // user-agent header from an HTTP request 
+        var deviceObj = await parser.setUA(ua).getResult()
+        return deviceObj;
+    }
 };
