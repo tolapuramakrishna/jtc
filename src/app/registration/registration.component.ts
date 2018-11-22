@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
 
     this.reg_form = this.fb.group({
-      'firstname': new FormControl('', [Validators.pattern('^[a-zA-Z ]*$')]),
+      'firstname': new FormControl('', [Validators.minLength(2),Validators.pattern('^[a-zA-Z ]*$')]),
       // 'lastname': new FormControl('', [Validators.pattern('^[a-zA-Z ]*$')]),
       // 'mobile': new FormControl('', [Validators.minLength(10), Validators.pattern('^[1-9]+[0-9]*$')]),
       'email': new FormControl(null, [Validators.required, Validators.pattern('^([_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5}))|(\d+$)$')]),
